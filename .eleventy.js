@@ -5,6 +5,7 @@ export default (eleventyConfig) => {
   eleventyConfig.addPlugin(eleventySass);
   // Add current year shortcode {% year %}
   eleventyConfig.addShortcode("year", () => `${new Date().getFullYear()}`);
+
   return {
     dir: {
       input: "src",

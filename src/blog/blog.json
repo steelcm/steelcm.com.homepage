@@ -1,3 +1,5 @@
 {
-  "eleventyExcludeFromCollections": false
+  "eleventyExcludeFromCollections": false,
+  "tags": "post",
+  "date": "git Created"
 }

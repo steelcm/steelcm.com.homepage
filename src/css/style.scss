@@ -1,3 +1,5 @@
+@use 'sass:color';
+
 $background: #282a36;
 $lighter: #44475a;
 $foreground: #f8f8f2;
@@ -78,7 +80,7 @@ a {
   transition: color .25s;
   color: $foreground;
   &:hover {
-    color: darken($primary, 10%);
+    color: color.adjust($primary, $lightness: -10%);
     text-decoration: underline;
   }
 }
@@ -123,4 +125,27 @@ footer {
 main {
   padding: 1rem;
   flex-grow: 1;
+}
+
+.post-list li a{
+  display: flex;
+  flex-direction: row;
+  min-width: 100%;
+  align-items: center;
+  line-height: 2rem;
+  text-decoration: none;
+  hr {
+    flex-grow: 1;
+    border: 0;
+    border-bottom: 1px dotted $foreground;
+    height: .8rem;
+    margin: 0 .5rem;
+    opacity: .5;
+  }
+  time {
+    transition: color .25s;
+  }
+  &:hover time {
+      color: $foreground;
+  }
 }
