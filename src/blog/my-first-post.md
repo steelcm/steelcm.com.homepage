@@ -2,9 +2,8 @@
 title: Blog styling and checking
 tags:
   - cat
+excerpt: This is a playground for blog styles. In theory this should never get deployed. However, I will probably accidentally push this live one day.
 ---
-
-This is a playground for blog styles. In theory this should never get deployed. However, I will probably accidentally push this live one day.
 
 ### Images
 
@@ -18,9 +17,14 @@ Images should break out of the centre container. This should be the same for a f
 >
 > — Troilus and Cressida, Act 2 Scene 1, Lines 42-43; Thersites to Ajax
 
-Things I need to fix...
+### Code
 
-- Remove the quotes added by tailwind typography
-- Fix the colors of the blockquote
+Syntax highlighting is handled by prism at build time.
+
+```javascript
+// This is some javascript code
+const str = "Hello World";
+console.log(str);
+```
 
 Videos should also be possible.
