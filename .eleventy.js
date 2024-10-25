@@ -6,6 +6,10 @@ export default (eleventyConfig) => {
   // Add current year shortcode {% year %}
   eleventyConfig.addShortcode("year", () => `${new Date().getFullYear()}`);
 
+  eleventyConfig.addPassthroughCopy({
+    "src/_includes/assets/css/global.css": "./global.css",
+  });
+
   return {
     dir: {
       input: "src",
