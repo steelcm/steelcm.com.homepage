@@ -1,0 +1,17 @@
+---
+layout: _layouts/base
+title: Title
+---
+
+<article>
+  <h2 class="title">
+    {{title}}
+  </h2>
+  <div class="meta">Posted on {{ page.date | longDate }}</div>
+
+  {% if excerpt %}
+  <div class="excerpt">{{ excerpt }}</div>
+  {% endif %}
+
+  {{ content | safe }}
+</article>

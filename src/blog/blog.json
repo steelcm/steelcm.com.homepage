@@ -1,5 +1,6 @@
 {
   "eleventyExcludeFromCollections": false,
   "tags": "post",
-  "date": "git Created"
+  "date": "git Created",
+  "layout": "_layouts/blog"
 }
