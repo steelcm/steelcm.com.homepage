@@ -24,6 +24,10 @@ export default (eleventyConfig) => {
   //   excerpt_separator: "<!-- excerpt -->",
   // });
 
+  eleventyConfig.addPassthroughCopy({
+    "src/_includes/assets/css/global.css": "./global.css",
+  });
+
   return {
     dir: {
       input: "src",
