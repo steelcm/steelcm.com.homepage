@@ -569,15 +569,17 @@ h1,
 h1 {
   font-size: 1.5rem;
   line-height: 2rem;
+  font-weight: 800;
 }
 
 h2 {
   font-size: 1.25rem;
   line-height: 1.75rem;
+  font-weight: 700;
 }
 
 p {
-  padding-bottom: 2rem;
+  padding-bottom: 1rem;
 }
 
 .prose {
@@ -1244,7 +1246,47 @@ main {
   padding-left: 1rem;
   padding-right: 1rem;
   padding-top: 1rem;
-  /* @apply dark:prose-p:text-red-500; */
+}
+
+.prose blockquote {
+  padding-top: 1rem;
+}
+
+.prose blockquote p {
+  margin: 0px;
+}
+
+.prose ol,
+.prose ul {
+  margin-top: 0px;
+  margin-bottom: 0px;
+  padding-bottom: 1rem;
+}
+
+.prose li > ol,
+.prose li > ul {
+  padding-top: 0px;
+  padding-bottom: 0px;
+}
+
+.prose li {
+  margin-top: 0px;
+  margin-bottom: 0px;
+}
+
+.prose pre {
+  position: relative;
+  margin-top: 0px;
+  margin-bottom: 1rem;
+  --tw-bg-opacity: 1;
+  background-color: rgb(40 42 54 / var(--tw-bg-opacity));
+}
+
+@media (min-width: 1024px) {
+  .prose pre {
+    margin-left: -25%;
+    min-width: 150%;
+  }
 }
 
 .prose-headings\:mb-4 :is(:where(h1, h2, h3, h4, h5, h6, th):not(:where([class~="not-prose"],[class~="not-prose"] *))) {
@@ -1255,8 +1297,9 @@ main {
   margin-top: 0px;
 }
 
-.prose-p\:mb-4 :is(:where(p):not(:where([class~="not-prose"],[class~="not-prose"] *))) {
-  margin-bottom: 1rem;
+.prose-p\:my-0 :is(:where(p):not(:where([class~="not-prose"],[class~="not-prose"] *))) {
+  margin-top: 0px;
+  margin-bottom: 0px;
 }
 
 .prose-a\:no-underline :is(:where(a):not(:where([class~="not-prose"],[class~="not-prose"] *))) {
@@ -1283,6 +1326,29 @@ main {
 
 .prose-img\:mt-0 :is(:where(img):not(:where([class~="not-prose"],[class~="not-prose"] *))) {
   margin-top: 0px;
+}
+
+.prose-hr\:mx-auto :is(:where(hr):not(:where([class~="not-prose"],[class~="not-prose"] *))) {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.prose-hr\:my-0 :is(:where(hr):not(:where([class~="not-prose"],[class~="not-prose"] *))) {
+  margin-top: 0px;
+  margin-bottom: 0px;
+}
+
+.prose-hr\:max-w-sm :is(:where(hr):not(:where([class~="not-prose"],[class~="not-prose"] *))) {
+  max-width: 24rem;
+}
+
+.prose-hr\:border-rose-500 :is(:where(hr):not(:where([class~="not-prose"],[class~="not-prose"] *))) {
+  --tw-border-opacity: 1;
+  border-color: rgb(244 63 94 / var(--tw-border-opacity));
+}
+
+.prose-hr\:pb-4 :is(:where(hr):not(:where([class~="not-prose"],[class~="not-prose"] *))) {
+  padding-bottom: 1rem;
 }
 
 @media (min-width: 1024px) {

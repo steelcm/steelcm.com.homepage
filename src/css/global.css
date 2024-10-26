@@ -14,10 +14,10 @@
     @apply font-archivo;
   }
   h1 {
-    @apply text-2xl;
+    @apply text-2xl font-extrabold;
   }
   h2 {
-    @apply text-xl;
+    @apply text-xl font-bold;
   }
   p {
     @apply pb-4;
@@ -66,5 +66,33 @@ main a {
 
 main {
   @apply mx-auto max-w-prose grow pt-4 px-4 w-full;
-  /* @apply dark:prose-p:text-red-500; */
+}
+
+.prose blockquote {
+  @apply pt-4;
+}
+.prose blockquote p {
+  @apply m-0;
+}
+
+.prose ol,
+.prose ul {
+  @apply my-0 pb-4;
+}
+.prose li > ol,
+.prose li > ul {
+  @apply py-0;
+}
+.prose li {
+  @apply my-0;
+}
+
+.prose pre {
+  @apply mt-0 mb-4 relative bg-[#282a36];
+}
+
+@media screen(lg) {
+  .prose pre {
+    @apply min-w-[150%] ml-[-25%];
+  }
 }
