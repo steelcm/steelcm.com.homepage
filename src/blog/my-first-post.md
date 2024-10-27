@@ -13,10 +13,10 @@ To create a heading, add number signs (`#`) in front of a word or phrase. The nu
 number signs you use should correspond to the heading level. For example, to create a
 heading level three (`<h3>`), use three number signs (e.g. `### My Header`).
 
-nb. in general we should never use any headings larger than h3, as the title of the 
+nb. in general we should never use any headings larger than h3, as the title of the
 website is h1, and the title of the post is h2. This is driven by the templates.
 
-# h1 Heading 8-)
+# h1 Heading
 
 ## h2 Heading
 
@@ -136,3 +136,21 @@ Images should break out of the centre container. This should be the same for a f
 ![image](https://images.pexels.com/photos/28220159/pexels-photo-28220159/free-photo-of-landscape-sunset-water-hill.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1)
 
 Videos should also be possible.
+
+---
+
+### Tables
+
+To add a table in Markdown, use the vertical line `|` to separate each column, and use
+three or more dashes `---` to create each column's header. A vertical line should
+also be added at either end of the row.
+
+Align text in the columns to the left, right, or center by adding a colon `:` to the
+left, right, or on both side of the dashes `---` within the header row.
+
+| Item              | In Stock | Price |
+| :---------------- | :------: | ----: |
+| Python Hat        |   True   | 23.99 |
+| SQL Hat           |   True   | 23.99 |
+| Codecademy Tee    |  False   | 19.99 |
+| Codecademy Hoodie |  False   | 42.99 |

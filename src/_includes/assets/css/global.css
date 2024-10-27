@@ -1282,6 +1282,14 @@ main {
   background-color: rgb(40 42 54 / var(--tw-bg-opacity));
 }
 
+.prose :where(code) {
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+  font-weight: 100;
+  font-family: Consolas, Monaco, "Andale Mono", "Ubuntu Mono", monospace;
+  /*   white-space: pre; */
+}
+
 @media (min-width: 1024px) {
   .prose pre {
     margin-left: -25%;
@@ -1302,8 +1310,18 @@ main {
   margin-bottom: 0px;
 }
 
+.prose-a\:text-rose-500 :is(:where(a):not(:where([class~="not-prose"],[class~="not-prose"] *))) {
+  --tw-text-opacity: 1;
+  color: rgb(244 63 94 / var(--tw-text-opacity));
+}
+
 .prose-a\:no-underline :is(:where(a):not(:where([class~="not-prose"],[class~="not-prose"] *))) {
   text-decoration-line: none;
+}
+
+.hover\:prose-a\:text-rose-600 :is(:where(a):not(:where([class~="not-prose"],[class~="not-prose"] *))):hover {
+  --tw-text-opacity: 1;
+  color: rgb(225 29 72 / var(--tw-text-opacity));
 }
 
 .prose-blockquote\:border-slate-800 :is(:where(blockquote):not(:where([class~="not-prose"],[class~="not-prose"] *))) {
@@ -1314,6 +1332,23 @@ main {
 .prose-blockquote\:text-slate-800 :is(:where(blockquote):not(:where([class~="not-prose"],[class~="not-prose"] *))) {
   --tw-text-opacity: 1;
   color: rgb(30 41 59 / var(--tw-text-opacity));
+}
+
+.prose-table\:relative :is(:where(table):not(:where([class~="not-prose"],[class~="not-prose"] *))) {
+  position: relative;
+}
+
+.prose-table\:mb-4 :is(:where(table):not(:where([class~="not-prose"],[class~="not-prose"] *))) {
+  margin-bottom: 1rem;
+}
+
+.prose-table\:mt-0 :is(:where(table):not(:where([class~="not-prose"],[class~="not-prose"] *))) {
+  margin-top: 0px;
+}
+
+.prose-table\:text-base :is(:where(table):not(:where([class~="not-prose"],[class~="not-prose"] *))) {
+  font-size: 1rem;
+  line-height: 1.5rem;
 }
 
 .prose-img\:relative :is(:where(img):not(:where([class~="not-prose"],[class~="not-prose"] *))) {
@@ -1352,6 +1387,14 @@ main {
 }
 
 @media (min-width: 1024px) {
+  .lg\:prose-table\:ml-\[-25\%\] :is(:where(table):not(:where([class~="not-prose"],[class~="not-prose"] *))) {
+    margin-left: -25%;
+  }
+
+  .lg\:prose-table\:min-w-\[150\%\] :is(:where(table):not(:where([class~="not-prose"],[class~="not-prose"] *))) {
+    min-width: 150%;
+  }
+
   .lg\:prose-img\:ml-\[-25\%\] :is(:where(img):not(:where([class~="not-prose"],[class~="not-prose"] *))) {
     margin-left: -25%;
   }

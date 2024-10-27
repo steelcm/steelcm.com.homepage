@@ -91,6 +91,12 @@ main {
   @apply mt-0 mb-4 relative bg-[#282a36];
 }
 
+.prose :where(code) {
+  @apply text-sm font-thin;
+  font-family: Consolas, Monaco, "Andale Mono", "Ubuntu Mono", monospace;
+  /*   white-space: pre; */
+}
+
 @media screen(lg) {
   .prose pre {
     @apply min-w-[150%] ml-[-25%];
