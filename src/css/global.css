@@ -14,7 +14,7 @@
     @apply font-archivo;
   }
   h1 {
-    @apply text-2xl font-extrabold;
+    @apply text-2xl;
   }
   h2 {
     @apply text-xl font-bold;
@@ -44,7 +44,7 @@ nav a {
   }
 }
 
-main a {
+main a:not(.no-underline) {
   @apply text-rose-500 hover:text-rose-600 relative;
 
   &::before {
@@ -68,7 +68,7 @@ main {
   @apply mx-auto max-w-prose grow pt-4 px-4 w-full;
 }
 
-.prose blockquote {
+.pros blockquote {
   @apply pt-4;
 }
 .prose blockquote p {
@@ -101,4 +101,7 @@ main {
   .prose pre {
     @apply min-w-[150%] ml-[-25%];
   }
+}
+
+.skew-image img {
 }

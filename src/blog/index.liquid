@@ -1,0 +1,52 @@
+---
+title: Blog
+eleventyExcludeFromCollections: true
+eleventyimpot:
+  collections: ["post"]
+layout: _layouts/base
+---
+
+{% assign current_year = "" %}
+
+{% assign posts_by_date = collections.post | sort: "date" | reverse %}
+
+{% for post in posts_by_date %}
+  {% assign post_year = post.date | date: "%B %Y" %}
+  {% if current_year != post_year %}
+    {% if current_year != "" %}
+      </ul>
+      </section>
+    {% endif %}
+    <section>
+    <h3 class="text-right font-bold py-1">{{ post_year }}</h3>
+    <ul class="post-list">
+  {% endif %}
+
+  <li>
+    <a href="{{ post.url }}" class="no-underline flex hover:text-rose-500 py-1">
+      {{ post.data.title }}  
+      <hr class="grow border-dotted border-b-black border h-4 mx-2"/>
+      <time datetime="{{ post.date | date: "%FT%T" }}">
+        {% assign d = post.date | date: "%e" | modulo: 10 %}
+        {% assign nth = "th" %}
+        {% case d %}
+          {% when 1 %}
+            {% assign nth = "st" %}
+          {% when 2 %}
+            {% assign nth = "nd" %}
+          {% when 3 %}
+            {% assign nth = "rd" %}
+        {% endcase %}
+        {{ post.date | date: "%e" }}{{ nth }}
+      </time>
+    </a>
+  </li>
+
+  {% if current_year != post_year %}
+    {% assign current_year = post_year %}
+  {% endif %}
+
+{% endfor %}
+</ul>
+</section>
+

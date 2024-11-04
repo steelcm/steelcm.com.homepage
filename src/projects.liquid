@@ -2,19 +2,22 @@
 title: Projects
 eleventyExcludeFromCollections: true
 ---
-<h2>This is where our liquid templating goes for showing projects</h2>
+
+<p>This is a list of SaaS products that I have built and either fully own, or co-own to some degree.</p>
 
 <ul>
   {% for project in projects %}
-    <li class="bg-white p-4 my-4 rounded hover:shadow hover:scale-105">
-      <a class="text-black hover:text-black" href="{{project.link}}" target="_blank">
-        <div class="flex flex-row gap-2 prose items-center">
-          <img
-            src="{{project.logo}}"
-            class="w-8 h-8 m-0"
-          >
-          <h3 class="m-0">{{ project.name }}</h3>
-          <div class="grow flex justify-end gap-2 items-center text-sm">
+    <li class="">
+      <a class="no-underline group block bg-white p-4 my-4 rounded hover:shadow hover:scale-105 duration-200" href="{{project.link}}" target="_blank">
+        <div class="md:flex flex-row gap-2 prose items-center">
+          <div class="flex justify-start gap-3 items-center pb-4">
+            <img
+              src="{{project.logo}}"
+              class="w-8 h-8 m-0 group-hover:rotate-12 duration-200"
+            >
+            <h3 class="m-0">{{ project.name }}</h3>
+          </div>
+          <div class="grow flex md:justify-end gap-2 items-center text-sm pb-4">
             <span
               class="
                 whitespace-nowrap px-2 rounded bg-zinc-200
@@ -37,7 +40,7 @@ eleventyExcludeFromCollections: true
             </span>
           </div>
         </div>
-        <p class="text-base-content/80 text-sm lg:text-base">{{ project.description }}</p>
+        <p class="text-base-content/80 text-sm lg:text-base pb-0">{{ project.description }}</p>
       </a>
     </li>
   {% endfor %}
