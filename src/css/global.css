@@ -92,7 +92,7 @@ main {
 }
 
 .prose :where(code) {
-  @apply text-sm font-thin;
+  @apply text-sm font-bold dark:text-white;
   font-family: Consolas, Monaco, "Andale Mono", "Ubuntu Mono", monospace;
   /*   white-space: pre; */
 }

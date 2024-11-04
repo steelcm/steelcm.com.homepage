@@ -1431,7 +1431,17 @@ main {
 .prose :where(code) {
   font-size: 0.875rem;
   line-height: 1.25rem;
-  font-weight: 100;
+  font-weight: 700;
+}
+
+@media (prefers-color-scheme: dark) {
+  .prose :where(code) {
+    --tw-text-opacity: 1;
+    color: rgb(255 255 255 / var(--tw-text-opacity));
+  }
+}
+
+.prose :where(code) {
   font-family: Consolas, Monaco, "Andale Mono", "Ubuntu Mono", monospace;
   /*   white-space: pre; */
 }
@@ -1597,6 +1607,11 @@ main {
   }
 
   .dark\:text-slate-200 {
+    --tw-text-opacity: 1;
+    color: rgb(226 232 240 / var(--tw-text-opacity));
+  }
+
+  .dark\:prose-headings\:text-slate-200 :is(:where(h1, h2, h3, h4, h5, h6, th):not(:where([class~="not-prose"],[class~="not-prose"] *))) {
     --tw-text-opacity: 1;
     color: rgb(226 232 240 / var(--tw-text-opacity));
   }
