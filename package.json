@@ -8,6 +8,7 @@
     "tailwind:process": "npx tailwindcss -i src/css/global.css -o src/_includes/assets/css/global.css --watch",
     "dev": "concurrently \"npm run tailwind:process\" \"npm run serve\"",
     "serve": "npx eleventy --serve",
+    "build": "npx eleventy",
     "prettier": "prettier"
   },
   "keywords": [],
