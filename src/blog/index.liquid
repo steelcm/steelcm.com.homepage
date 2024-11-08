@@ -25,7 +25,7 @@ layout: _layouts/base
   <li>
     <a href="{{ post.url }}" class="no-underline flex hover:text-rose-500 py-1">
       {{ post.data.title }}  
-      <hr class="grow border-dotted border-b-black border h-4 mx-2"/>
+      <hr class="grow border-dotted border-b-black border-0 border-b h-4 mx-2"/>
       <time datetime="{{ post.date | date: "%FT%T" }}">
         {% assign d = post.date | date: "%e" | modulo: 10 %}
         {% assign nth = "th" %}

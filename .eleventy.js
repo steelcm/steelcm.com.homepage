@@ -28,6 +28,13 @@ export default (eleventyConfig) => {
     "src/_includes/assets/css/global.css": "./global.css",
   });
 
+  // Exlude posts that have `draft: true` in their front matter
+  eleventyConfig.addPreprocessor("drafts", "*", (data, content) => {
+    if (data.draft) {
+      return false;
+    }
+  });
+
   return {
     dir: {
       input: "src",
