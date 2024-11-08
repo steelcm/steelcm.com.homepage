@@ -23,8 +23,8 @@ export default (eleventyConfig) => {
 
   eleventyConfig.addPassthroughCopy({
     "src/_includes/assets/css/global.css": "./global.css",
+    "src/images": "./images",
   });
-
   // Exlude posts that have `draft: true` in their front matter
   eleventyConfig.addPreprocessor("drafts", "*", (data, content) => {
     if (data.draft) {
