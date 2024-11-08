@@ -7,7 +7,7 @@ jobs:
     steps:
       - uses: actions/checkout@master
       - name: Build
-        uses: TartanLlama/actions-eleventy@master
+        uses: cjerrington/actions-eleventy@master
         with:
           install_dependencies: true
       - name: Deploy
@@ -15,4 +15,4 @@ jobs:
         with:
           publish_dir: _site
           publish_branch: gh-pages
-          github_token: ${{ secrets.GITHUB_TOKEN }}
+          github_token: ${{ secrets.DEPLOY_TOKEN }}
