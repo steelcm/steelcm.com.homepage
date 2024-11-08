@@ -1,0 +1,120 @@
+
+<!doctype html>
+<html lang="en">
+  <head class="dark">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How to format dates with ordinal number suffixes in Liquid | steelcm.com</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://unpkg.com/prism-themes@1.9.0/themes/prism-dracula.css" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Archivo:ital,wght@0,100..900;1,100..900&family=Tenor+Sans&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/global.css" />
+  </head>
+  <body class="flex flex-col min-h-screen bg-slate-200 dark:bg-slate-800 text-slate-800 dark:text-slate-200 ">
+    <header class="text-center pt-4">
+      <h1 class="pb-4 uppercase">
+        <a href="/" title="Homepage">Christoper Steel</a>
+      </h1>
+      <nav class="flex space-x-8 justify-center pb-4" aria-label="Main navigation">
+        <a href="/blog">Blog</a>
+        <a href="/projects">Projects</a>
+        <a href="/about">About</a>
+      </nav>
+    </header>
+    <main>
+      
+<h2 class="mb-0"> How to format dates with ordinal number suffixes in Liquid </h2>
+<div class="text-slate-500 mb-4">Posted on November 8, 2024</div>
+<article class="
+prose
+prose-slate
+dark:text-slate-200 
+prose-quoteless
+prose-a:no-underline
+prose-headings:mt-0
+prose-headings:mb-4
+dark:prose-headings:text-slate-200 
+prose-p:my-0
+prose-img:mb-4
+prose-img:mt-0
+prose-img:relative
+lg:prose-img:min-w-[150%]
+lg:prose-img:ml-[-25%]
+
+prose-blockquote:border-slate-800
+prose-blockquote:dark:border-slate-200
+prose-blockquote:text-slate-800
+prose-blockquote:dark:text-slate-200
+
+prose-hr:border-rose-500
+prose-hr:max-w-sm
+prose-hr:mx-auto
+prose-hr:my-0
+prose-hr:pb-4
+
+prose-a:text-rose-500
+hover:prose-a:text-rose-600
+
+prose-table:text-base
+prose-table:mb-4
+prose-table:mt-0
+prose-table:relative
+lg:prose-table:min-w-[150%]
+lg:prose-table:ml-[-25%]
+">
+
+  
+  <p id="excerpt" class="">Struggling to make dates sound natural in Liquid templates? Learn how to add ordinal suffixes (&#39;st,&#39; &#39;nd,&#39; &#39;rd,&#39; &#39;th&#39;) for a conversational touch.</p>
+  
+
+  <hr>
+<p>Using ordinal suffixes for dates (like &quot;1st,&quot; &quot;2nd,&quot; &quot;3rd,&quot; and &quot;4th&quot;) makes the
+date sound more natural and conversational, especially in spoken or informal
+writing. However, in <a href="https://shopify.github.io/liquid/">Liquid</a>, the templating
+language often used with platforms like <a href="https://www.shopify.com/">Shopify</a> and
+<a href="https://www.11ty.dev/">11ty</a>, there is no way to append this suffix without
+custom code.</p>
+<p>The following calculates the correct ordinal suffix for the given date.</p>
+<pre class="language-liquid"><code class="language-liquid"><span class="token liquid language-liquid"><span class="token delimiter punctuation">{%</span> <span class="token keyword">liquid</span>
+  # Set the initial <span class="token object">date</span>
+  <span class="token keyword">assign</span> myDate <span class="token operator">=</span> <span class="token string">'2024-11-03'</span>
+
+  # Get the last digit of the day <span class="token punctuation">(</span><span class="token number">1</span><span class="token operator">-</span><span class="token number">31</span><span class="token punctuation">)</span> <span class="token keyword">for</span> determining suffix
+  <span class="token keyword">assign</span> d <span class="token operator">=</span> myDate <span class="token operator">|</span> <span class="token object">date</span><span class="token operator">:</span> <span class="token string">'%e'</span> <span class="token operator">|</span> <span class="token function filter">modulo</span><span class="token operator">:</span> <span class="token number">10</span>
+
+  # Get the full day number <span class="token punctuation">(</span><span class="token number">1</span><span class="token operator">-</span><span class="token number">31</span><span class="token punctuation">)</span>
+  <span class="token keyword">assign</span> d2 <span class="token operator">=</span> myDate <span class="token operator">|</span> <span class="token object">date</span><span class="token operator">:</span> <span class="token string">'%e'</span>
+
+  # Special <span class="token keyword">case</span><span class="token operator">:</span> 11th<span class="token punctuation">,</span> 12th<span class="token punctuation">,</span> 13th always use <span class="token string">'th'</span>
+  <span class="token keyword">if</span> d2 <span class="token operator">>=</span> <span class="token number">11</span> <span class="token operator">and</span> d2 <span class="token operator">&lt;=</span> <span class="token number">13</span>
+    <span class="token keyword">assign</span> d <span class="token operator">=</span> <span class="token number">0</span>
+  <span class="token keyword">endif</span>
+
+  # Default to <span class="token string">'th'</span> suffix
+  <span class="token keyword">assign</span> nth <span class="token operator">=</span> <span class="token string">'th'</span>
+
+  # Determine correct ordinal suffix
+  <span class="token keyword">case</span> d
+    <span class="token keyword">when</span> <span class="token number">1</span>
+      <span class="token keyword">assign</span> nth <span class="token operator">=</span> <span class="token string">'st'</span>
+    <span class="token keyword">when</span> <span class="token number">2</span>
+      <span class="token keyword">assign</span> nth <span class="token operator">=</span> <span class="token string">'nd'</span>
+    <span class="token keyword">when</span> <span class="token number">3</span>
+      <span class="token keyword">assign</span> nth <span class="token operator">=</span> <span class="token string">'rd'</span>
+  <span class="token keyword">endcase</span>
+<span class="token delimiter punctuation">%}</span></span>
+
+<span class="token comment">&lt;!-- Output the date 'November 3' --></span>
+<span class="token liquid language-liquid"><span class="token delimiter punctuation">{{</span> myDate <span class="token operator">|</span> <span class="token object">date</span><span class="token operator">:</span> <span class="token string">'%B %e'</span> <span class="token delimiter punctuation">-}}</span></span>
+<span class="token comment">&lt;!-- Outputs our calculated suffix 'rd' --></span>
+<span class="token liquid language-liquid"><span class="token delimiter punctuation">{{-</span> nth <span class="token delimiter punctuation">}}</span></span></code></pre>
+
+</article>
+
+    </main>
+    <footer class="text-center pt-4 text-slate-500">
+      <p> &copy; 2024, Panda Bridge Ltd. All Rights Reserved </p>
+    </footer>
+  </body>
+</html>

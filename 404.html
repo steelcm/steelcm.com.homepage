@@ -1,19 +1,15 @@
----
-name: steelcm.com
-title: title
----
 
 <!doctype html>
 <html lang="en">
   <head class="dark">
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{{ title }} | {{ name }}</title>
+    <title>Oops! Not Found | steelcm.com</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://unpkg.com/prism-themes@1.9.0/themes/prism-dracula.css" rel="stylesheet" />
     <link href="https://fonts.googleapis.com/css2?family=Archivo:ital,wght@0,100..900;1,100..900&family=Tenor+Sans&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="{{ '/global.css' | url}}" />
+    <link rel="stylesheet" href="/global.css" />
   </head>
   <body class="flex flex-col min-h-screen bg-slate-200 dark:bg-slate-800 text-slate-800 dark:text-slate-200 ">
     <header class="text-center pt-4">
@@ -27,10 +23,17 @@ title: title
       </nav>
     </header>
     <main>
-      {{ content | safe }}
+      
+<div class="text-center">
+  <h1>Oops! Not Found</h1>
+  <p class="text-xl">Looks like this page doesn't exist!</p>
+  <p>Go back to home and continue exploring.</p>
+  <a href="/">Back to Home</a>
+</div>
+
     </main>
     <footer class="text-center pt-4 text-slate-500">
-      <p> &copy; {% year %}, Panda Bridge Ltd. All Rights Reserved </p>
+      <p> &copy; 2024, Panda Bridge Ltd. All Rights Reserved </p>
     </footer>
   </body>
 </html>

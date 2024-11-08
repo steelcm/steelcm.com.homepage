@@ -1260,11 +1260,6 @@ p {
   background-color: rgb(212 212 216 / var(--tw-bg-opacity));
 }
 
-.bg-slate-500 {
-  --tw-bg-opacity: 1;
-  background-color: rgb(100 116 139 / var(--tw-bg-opacity));
-}
-
 .p-4 {
   padding: 1rem;
 }
