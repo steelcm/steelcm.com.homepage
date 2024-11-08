@@ -28,7 +28,7 @@ export default (eleventyConfig) => {
   });
   // Exlude posts that have `draft: true` in their front matter
   eleventyConfig.addPreprocessor("drafts", "*", (data, content) => {
-    if (data.draft) {
+    if (data.draft && process.env.ELEVENTY_RUN_MODE === "build") {
       return false;
     }
   });
