@@ -1,0 +1,177 @@
+
+<!doctype html>
+<html lang="en">
+  <head class="dark">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Disallow all the robots! Search Engine Optimisation using Robots.txt | steelcm.com</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://unpkg.com/prism-themes@1.9.0/themes/prism-dracula.css" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Archivo:ital,wght@0,100..900;1,100..900&family=Tenor+Sans&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/global.css" />
+  </head>
+  <body class="flex flex-col min-h-screen bg-slate-200 dark:bg-slate-800 text-slate-800 dark:text-slate-200 ">
+    <header class="text-center pt-4">
+      <h1 class="pb-4 uppercase">
+        <a href="/" title="Homepage">Christoper Steel</a>
+      </h1>
+      <nav class="flex space-x-8 justify-center pb-4" aria-label="Main navigation">
+        <a href="/blog">Blog</a>
+        <a href="/projects">Projects</a>
+        <a href="/about">About</a>
+      </nav>
+    </header>
+    <main>
+      
+<h2 class="mb-0"> Disallow all the robots! Search Engine Optimisation using Robots.txt </h2>
+<div class="text-slate-500 mb-4">Posted on November 1, 2024</div>
+<article class="
+prose
+prose-slate
+dark:text-slate-200 
+prose-quoteless
+prose-a:no-underline
+prose-headings:mt-0
+prose-headings:mb-4
+dark:prose-headings:text-slate-200 
+prose-p:my-0
+prose-img:mb-4
+prose-img:mt-0
+prose-img:relative
+lg:prose-img:min-w-[150%]
+lg:prose-img:ml-[-25%]
+
+prose-blockquote:border-slate-800
+prose-blockquote:dark:border-slate-200
+prose-blockquote:text-slate-800
+prose-blockquote:dark:text-slate-200
+
+prose-hr:border-rose-500
+prose-hr:max-w-sm
+prose-hr:mx-auto
+prose-hr:my-0
+prose-hr:pb-4
+
+prose-a:text-rose-500
+hover:prose-a:text-rose-600
+
+prose-table:text-base
+prose-table:mb-4
+prose-table:mt-0
+prose-table:relative
+lg:prose-table:min-w-[150%]
+lg:prose-table:ml-[-25%]
+">
+
+  
+  <p id="excerpt" class="">What’s the robot.txt? How do I create one? Is it even required?!</p>
+  
+
+  <h3>What is the robots.txt</h3>
+<p>The <code>robots.txt</code> file sits in the root domain of your website (ie.
+<a href="https://steelcm.com/robots.txt">https://steelcm.com/robots.txt</a> and is intended
+for the consumption of web crawlers and, well, robots. So not for your average
+user. At it’s very core, it’s a set of guidelines about what should and should
+not be indexed on your website.</p>
+<p><img src="/images/code-is-more-of-a-guideline.webp" alt="image"></p>
+<h3>What is a web crawler?</h3>
+<p>Web crawlers, also known as web spiders or web robots, are programs that browse
+the web in an automated manor collecting information usually for legitimate
+reasons. For example, search engines (such as Google) will use crawlers to
+ensure that they have up-to-date information about your site for their search
+indexes. Crawlers will load a web page, and read it’s contents. It will then
+follow any links on that page and repeat the process until every page in your
+website has been visited… I for one welcome our new robotic overlords.</p>
+<p><img src="/images/robot-overlords.webp" alt="image"></p>
+<h3>Why does the robots.txt exist!</h3>
+<p>The Robots.txt standard was first proposed in 1994 by
+<a href="https://en.wikipedia.org/wiki/Martijn_Koster">Martijn Koster</a> after a
+misbehaving web crawler inadvertently caused a denial of service (DOS) attack on
+Koster’s server. Not wanting the incident to reoccur, Koster proposed the
+standard on the www-talk mailing list, the main communication channel for web
+related activities at the time.</p>
+<h3>How do I create a robots.txt?</h3>
+<p>The robots.txt file is a simple text file that resides in the root of your
+website. You can create a static text file manually named robots.txt and place
+it on your server. Most web servers will treat files with the *.txt extensions
+as a static file and serve it without any further configuration.</p>
+<p>An example of a robots.txt file could look like the following:</p>
+<pre><code>User-agent: msnbot
+Crawl-delay: 120
+Disallow: /admin/
+Noindex: /admin/
+Disallow: /*.xml$
+
+User-agent discobot
+Disallow: /
+
+User-agent: *
+Allow: /
+
+Sitemap: https://www.steelcm.com/sitemap.xml
+</code></pre>
+<h3>What does user-agents do?</h3>
+<p>When a user or a crawler makes a web request they usually also include
+<code>user-agent</code> request header. This is optional, but provides information about
+who or what is making the request. For example, if you are using firefox, you
+will be sending a <code>user-agent</code> with each request that looks a little like the
+following:</p>
+<p><code>Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:52.0) Gecko/20100101 Firefox/52.0</code></p>
+<p>Web crawlers can also send a <code>user-agent</code> to clearly identify themselves. We can
+specify the <code>user-agent</code> in our robots.txt file to apply rules only to that one
+web crawler. <a href="https://www.robotstxt.org/db.html">robotstxt.org</a> contains a list
+of many web crawler user-agents for reference.</p>
+<p>In our example we are explicitly denoting rules for the MSN web crawler
+(<code>User-agent: msnbot</code>). This will only apply the following elements
+(<code>crawl-delay</code> &amp; <code>disallow</code>) to the web crawler. You can also use a wild card
+User-agent: * which will apply the following elements (<code>allow</code>) to anything
+that doesn’t match another section.</p>
+<h3>What does allow/disallow do?</h3>
+<p>Allow and disallow elements, as you might expect, tells the web crawler which
+directories or paths it can or cannot access respectively. In our example we can
+see that the msn bot is not allowed to crawl anything under the <code>admin</code>
+directory, and on the next line, any file path ending in <code>.xml</code>.</p>
+<p>In our example the discobot is being told not to crawl anything on the website
+whatsoever, and the final segment is saying, any other agent, crawl everything!</p>
+<h3>What does noindex do?</h3>
+<p>Disallow tells the crawler to not visit a path or directory, but these elements
+may still appear in search results because other crawlable pages are linking to
+them. To prevent these pages or directories appearing in search results it’s
+best to add the <code>Noindex</code> option, which tells crawlers, such as Google, not to
+show them in search results.</p>
+<h3>What does Sitemap do?</h3>
+<p>The sitemap field simply directs the crawler to your websites sitemap if you
+have one. Historically, you would need to submit sitemaps directly to search
+engines, this provides a simpler mechanism to do so. It should be noted that,
+according to
+<a href="https://www.sitemaps.org/protocol.html#submit_robots">sitemaps.org</a>
+specification, a full URL needs to used, rather than a relative one.</p>
+<h3>What does crawl-delay do?</h3>
+<p>The crawl-delay element is a way of throttling requests for the given crawler.
+The number specified against this element represents the number of seconds
+between each crawl request. So in our example the MSN crawler has the following:</p>
+<p><code>Crawl-delay: 120</code></p>
+<p>Which means, only request a new page every 120 seconds (ie. 2 minutes). This is
+useful if your site is heavily crawled and it’s impeding normal organic traffic.</p>
+<h3>Is a robots.txt required?</h3>
+<p>No. Search engines, such as Google, will crawl your site if a robots.txt is not
+present (see
+<a href="https://developers.google.com/search/docs/crawling-indexing/robots/intro#h01">Google’s FAQ</a>).
+However it is recommended if you want better control on how, what and when your
+site is crawled. In addition, crawlers are notorious for requesting non-existent
+pages as they try and find every page that exists on your website. If you find
+that your logs are inundated by 404 messages generated by web crawlers making it
+hard to identify legitimate errors, then robots.txt is the tool for you!</p>
+<p>The biggest thing to remember is that the robots.txt is a guideline and not a
+rule. Most search engine crawlers do adhere to the guideline, but anyone can
+create a crawler that ignores the robots.txt file.</p>
+
+</article>
+
+    </main>
+    <footer class="text-center pt-4 text-slate-500">
+      <p> &copy; 2024, Panda Bridge Ltd. All Rights Reserved </p>
+    </footer>
+  </body>
+</html>
