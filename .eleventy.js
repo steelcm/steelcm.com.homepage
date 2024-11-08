@@ -1,9 +1,6 @@
-import eleventySass from "@11tyrocks/eleventy-plugin-sass-lightningcss";
 import syntaxHighlight from "@11ty/eleventy-plugin-syntaxhighlight";
 
 export default (eleventyConfig) => {
-  // Compile Sass in Eleventy (11ty) and process it with LightningCSS to minify, prefix, and add future CSS support.
-  eleventyConfig.addPlugin(eleventySass);
   // Add syntax highlighting at build time via prismJS
   eleventyConfig.addPlugin(syntaxHighlight);
   // Add current year shortcode {% year %}

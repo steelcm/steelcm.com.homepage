@@ -1,4 +1,5 @@
 ---
+date: 2024-11-01
 title: Blog styling and checking
 tags:
   - cat

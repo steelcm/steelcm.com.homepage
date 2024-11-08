@@ -1,4 +1,5 @@
 ---
+date: 2024-11-08
 title: How to format dates with ordinal number suffixes in Liquid
 excerpt:
   Struggling to make dates sound natural in Liquid templates? Learn how to add
