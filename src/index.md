@@ -1,6 +1,6 @@
 ---
 title: Homepage
-eleventyExcludeFromCollections: true
+date: 2024-10-01
 ---
 
 Hi, my name is Christopher Steel. I'm a freelance web developer based near
