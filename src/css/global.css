@@ -1,3 +1,6 @@
+/* @import "https://unpkg.com/prism-themes@1.9.0/themes/prism-dracula.css"; */
+@import "prism-themes/themes/prism-dracula.css";
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
