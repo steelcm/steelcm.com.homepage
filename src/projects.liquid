@@ -2,13 +2,19 @@
 title: Projects
 eleventyExcludeFromCollections: true
 ---
-
-<p>This is a list of SaaS products that I have built and either fully own, or co-own to some degree.</p>
+<p>
+  This is a list of SaaS products that I have built and either fully own, or
+  co-own to some degree.
+</p>
 
 <ul>
   {% for project in projects %}
     <li class="">
-      <a class="no-underline group block bg-white p-4 my-4 rounded hover:shadow hover:scale-105 duration-200" href="{{project.link}}" target="_blank">
+      <a
+        class="no-underline group block bg-white p-4 my-4 rounded hover:shadow hover:scale-105 duration-200"
+        href="{{project.link}}"
+        target="_blank"
+      >
         <div class="md:flex flex-row gap-2 prose items-center">
           <div class="flex justify-start gap-3 items-center pb-4">
             <img
@@ -40,7 +46,9 @@ eleventyExcludeFromCollections: true
             </span>
           </div>
         </div>
-        <p class="text-base-content/80 text-sm lg:text-base pb-0">{{ project.description }}</p>
+        <p class="text-base-content/80 text-sm lg:text-base pb-0 text-zinc-800">
+          {{ project.description }}
+        </p>
       </a>
     </li>
   {% endfor %}
