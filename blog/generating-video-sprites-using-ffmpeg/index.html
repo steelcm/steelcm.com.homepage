@@ -1,0 +1,170 @@
+
+<!doctype html>
+<html lang="en">
+  <head class="dark">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Generate video sprites using just Ffmpeg | steelcm.com</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="/global.css" media="screen" />
+  </head>
+  <body class="flex flex-col min-h-screen bg-slate-200 dark:bg-slate-800 text-slate-800 dark:text-slate-200 ">
+    <header class="text-center pt-4">
+      <h1 class="pb-4 uppercase">
+        <a href="/" title="Homepage">Christoper Steel</a>
+      </h1>
+      <nav class="flex space-x-8 justify-center pb-4" aria-label="Main navigation">
+        <a href="/blog">Blog</a>
+        <a href="/projects">Projects</a>
+        <a href="/about">About</a>
+      </nav>
+    </header>
+    <main>
+      
+<h2 class="mb-0"> Generate video sprites using just Ffmpeg </h2>
+<div class="text-slate-500 mb-4">Posted on November 22, 2024</div>
+<article class="
+prose
+prose-slate
+dark:text-slate-200 
+prose-quoteless
+prose-a:no-underline
+prose-headings:mt-0
+prose-headings:mb-4
+dark:prose-headings:text-slate-200 
+prose-p:my-0
+prose-img:mb-4
+prose-img:mt-0
+prose-img:relative
+lg:prose-img:max-w-[150%]
+lg:prose-img:ml-[-25%]
+
+prose-blockquote:border-slate-800
+prose-blockquote:dark:border-slate-200
+prose-blockquote:text-slate-800
+prose-blockquote:dark:text-slate-200
+
+prose-hr:border-rose-500
+prose-hr:max-w-sm
+prose-hr:mx-auto
+prose-hr:my-0
+prose-hr:pb-4
+
+prose-a:text-rose-500
+hover:prose-a:text-rose-600
+
+prose-table:text-base
+prose-table:mb-4
+prose-table:mt-0
+prose-table:relative
+lg:prose-table:min-w-[150%]
+lg:prose-table:ml-[-25%]
+">
+
+  
+  <p id="excerpt" class="">Learn how to create video sprites with just FFmpeg — perfect for lightweight video previews.</p>
+  
+
+  <hr>
+<p>The following is an example of a video preview of the
+<a href="http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4">Big Buck Bunny</a>
+video using a sprite sheet generated from Ffmpeg. Hover over the image to see
+the preview change.</p>
+<div id="sprite-example"><span id="sprite-timeline"></span></div>
+<style>
+#sprite-example {
+    width: 240px;
+    height: 135px;
+    background: url(/images/sprite.png);
+    display: block;
+    margin: 0 auto 1rem auto;
+    position: relative;
+}
+#sprite-timeline {
+    width: 2px;
+    height: 135px;
+    background: red;
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    pointer-events: none;
+}
+</style>
+<script>
+    const spriteTimeline = document.getElementById("sprite-timeline");
+    document.getElementById("sprite-example").addEventListener('mousemove', event => {
+        const frame = Math.round((event.offsetX * (20-1)) / 240)
+        event.target.style.backgroundPositionY=`${frame * -135}px`
+        spriteTimeline.style.left =`${event.offsetX}px`
+    })
+    document.getElementById("sprite-example").addEventListener('mouseout', event => {
+        event.target.style.backgroundPositionY=`0px`
+        spriteTimeline.style.left =`0px`
+    })
+</script>
+<p>Save the following shell script as <code>sprite.sh</code>, and update the permissions so
+you can execute it (ie. <code>chmod +x ./sprite.sh</code>).</p>
+<pre class="language-bash"><code class="language-bash"><span class="token shebang important">#! /usr/bin/bash</span>
+
+<span class="token assign-left variable">INPUT</span><span class="token operator">=</span><span class="token variable">$1</span>
+<span class="token assign-left variable">OUTPUT</span><span class="token operator">=</span><span class="token variable">$2</span>
+<span class="token assign-left variable">FRAMES</span><span class="token operator">=</span><span class="token number">20</span>
+
+<span class="token comment"># Extract video duration in seconds</span>
+<span class="token assign-left variable">DURATION_S</span><span class="token operator">=</span><span class="token variable"><span class="token variable">$(</span>ffprobe <span class="token parameter variable">-v</span> error <span class="token parameter variable">-show_entries</span> <span class="token assign-left variable">format</span><span class="token operator">=</span>duration <span class="token parameter variable">-of</span> <span class="token assign-left variable">default</span><span class="token operator">=</span>noprint_wrappers<span class="token operator">=</span><span class="token number">1</span>:nokey<span class="token operator">=</span><span class="token number">1</span> $INPUT<span class="token variable">)</span></span>
+
+<span class="token comment"># Calculate the FPS if we want to show 20 frames in our sprite sheet</span>
+<span class="token assign-left variable">FPS</span><span class="token operator">=</span><span class="token variable"><span class="token variable">$(</span><span class="token builtin class-name">echo</span> <span class="token string">"scale=8; <span class="token variable">$FRAMES</span> / <span class="token variable">$DURATION_S</span>"</span> <span class="token operator">|</span> <span class="token function">bc</span><span class="token variable">)</span></span>
+
+<span class="token comment"># Generate the sprite sheet</span>
+ffmpeg <span class="token punctuation">\</span>
+  <span class="token parameter variable">-y</span> <span class="token punctuation">\</span>
+  <span class="token parameter variable">-i</span> <span class="token string">"<span class="token variable">$INPUT</span>"</span> <span class="token punctuation">\</span>
+  <span class="token parameter variable">-frames</span> <span class="token number">1</span> <span class="token punctuation">\</span>
+  <span class="token parameter variable">-q:v</span> <span class="token number">2</span> <span class="token punctuation">\</span>
+  <span class="token parameter variable">-filter_complex</span> <span class="token string">"fps=<span class="token variable">$FPS</span>,pad=width=max(iw\,ih*(16/9)):height=ow/(16/9):x=(ow-iw)/2:y=(oh-ih)/2,scale=-1:135:force_original_aspect_ratio=decrease,tile=1x<span class="token variable">$FRAMES</span>"</span> <span class="token punctuation">\</span>
+  <span class="token variable">$OUTPUT</span></code></pre>
+<p>You can then run the script as follows:</p>
+<pre class="language-sh"><code class="language-sh">./sprite.sh yourvideo.mp4 yourvideospritesheet.png</code></pre>
+<p>The ffmpeg command can be explained as follows:</p>
+<ul>
+<li>
+<p><code>-y</code> Override any existing output.</p>
+</li>
+<li>
+<p><code>-i &quot;$INPUT&quot;</code> The input file.</p>
+</li>
+<li>
+<p><code>-frames 1</code> Only output a single image (one frame).</p>
+</li>
+<li>
+<p><code>-q:v 2</code> Ouput quality, 0 is the best.</p>
+</li>
+<li>
+<p><code>-filter_complex</code> That's where all the magic happens.</p>
+<ul>
+<li><code>fps=$FPS</code> Set the desired FPS to extract the 20 frames from the entire
+length of the video.</li>
+<li><code>pad=width=max(iw\,ih*(16/9)):height=ow/(16/9):x=(ow-iw)/2:y=(oh-ih)/2</code> This
+pads the frame into a 16:9 aspect ratio and centres it.</li>
+<li><code>scale=-1:135:force_original_aspect_ratio=decrease</code> This scales the frame
+down to 240x135.</li>
+<li><code>tile=1x$FRAMES</code> Finally we tile our output vertically into this grid, 1
+frame across, 20 frames down.</li>
+</ul>
+</li>
+</ul>
+<p>The final output image look as follows. Once combined with some basic CSS and
+JS, the scrubbing preview seen at the start of this article can be achieved.</p>
+<p><img src="/images/sprite.png" alt="sprite"></p>
+
+</article>
+
+    </main>
+    <footer class="text-center pt-4 text-slate-500">
+      <p> &copy; 2024, Panda Bridge Ltd. All Rights Reserved </p>
+    </footer>
+  </body>
+</html>
