@@ -1529,6 +1529,9 @@ main {
 	.lg\:prose-img\:min-w-\[150\%\] :is(:where(img):not(:where([class~="not-prose"],[class~="not-prose"] *))) {
 		min-width: 150%;
 	}
+	.lg\:prose-img\:max-w-\[150\%\] :is(:where(img):not(:where([class~="not-prose"],[class~="not-prose"] *))) {
+		max-width: 150%;
+	}
 }
 @media (prefers-color-scheme: dark) {
 	.dark\:bg-slate-800 {
