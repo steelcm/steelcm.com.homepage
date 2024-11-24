@@ -22,6 +22,7 @@ export default (eleventyConfig) => {
   // });
 
   eleventyConfig.addPassthroughCopy({
+    "src/CNAME": "./CNAME",
     "src/robots.txt": "./robots.txt",
     "src/_includes/assets/css/global.css": "./global.css",
     "src/images": "./images",
