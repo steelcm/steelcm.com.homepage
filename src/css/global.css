@@ -214,7 +214,7 @@ main {
 }
 
 .prose :where(code) {
-  @apply text-sm font-bold dark:text-white;
+  @apply text-sm font-bold dark:text-white break-all;
   font-family: Consolas, Monaco, "Andale Mono", "Ubuntu Mono", monospace;
   /*   white-space: pre; */
 }
