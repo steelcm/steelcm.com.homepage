@@ -41,6 +41,13 @@ the preview change.
         event.target.style.backgroundPositionY=`${frame * -135}px`
         spriteTimeline.style.left =`${event.offsetX}px`
     })
+    document.getElementById("sprite-example").addEventListener('touchmove', event => {
+        const rect = event.target.getBoundingClientRect();
+        const offsetX = event.targetTouches[0].pageX - rect.left;
+        const frame = Math.round((offsetX * (20-1)) / 240)
+        event.target.style.backgroundPositionY=`${frame * -135}px`
+        spriteTimeline.style.left =`${offsetX}px`
+    })
     document.getElementById("sprite-example").addEventListener('mouseout', event => {
         event.target.style.backgroundPositionY=`0px`
         spriteTimeline.style.left =`0px`
