@@ -1395,6 +1395,7 @@ main {
 	background-color: rgb(40 42 54 / var(--tw-bg-opacity));
 }
 .prose :where(code) {
+	word-break: break-all;
 	font-size: 0.875rem;
 	line-height: 1.25rem;
 	font-weight: 700;
@@ -1525,9 +1526,6 @@ main {
 	}
 	.lg\:prose-img\:ml-\[-25\%\] :is(:where(img):not(:where([class~="not-prose"],[class~="not-prose"] *))) {
 		margin-left: -25%;
-	}
-	.lg\:prose-img\:min-w-\[150\%\] :is(:where(img):not(:where([class~="not-prose"],[class~="not-prose"] *))) {
-		min-width: 150%;
 	}
 	.lg\:prose-img\:max-w-\[150\%\] :is(:where(img):not(:where([class~="not-prose"],[class~="not-prose"] *))) {
 		max-width: 150%;
