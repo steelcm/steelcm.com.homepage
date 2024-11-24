@@ -43,7 +43,9 @@ the preview change.
     })
     document.getElementById("sprite-example").addEventListener('touchmove', event => {
         const rect = event.target.getBoundingClientRect();
-        const offsetX = event.targetTouches[0].pageX - rect.left;
+        let offsetX = event.targetTouches[0].pageX - rect.left;
+        if(offsetX < 0) { offsetX = 0; }
+        if(offsetX > 240) { offsetX = 240; }
         const frame = Math.round((offsetX * (20-1)) / 240)
         event.target.style.backgroundPositionY=`${frame * -135}px`
         spriteTimeline.style.left =`${offsetX}px`
