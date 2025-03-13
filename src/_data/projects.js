@@ -18,7 +18,7 @@ const projects = [
   {
     logo: "https://formflare.io/favicon.ico",
     link: "https://formflare.io/",
-    name: "From Flare",
+    name: "Form Flare",
     description: "Website form processing and automation.",
     turnover: "$ --- /mo ",
     status: "Active",
